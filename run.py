@@ -31,8 +31,14 @@ def train(input_path, epochs=10, output_path="./weights/"):
     tokenizer.save_pretrained(output_path)
 
 
-def evaluate(input_path, epochs=10, output_path="./weights/"):
-    pass
+def evaluate(input_path, model_path="weights/"):
+    estimator = BertEstimator()
+    estimator.load(model_dir=model_path)
+
+    dataset = Dataset(tokenizer=estimator.tokenizer)
+    dataloader = dataset.prepare_dataloader(input_path)
+    score = estimator.evaluate(dataloader)
+    print(score)
 
 
 def main():
