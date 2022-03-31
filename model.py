@@ -37,6 +37,9 @@ class BertEstimator:
     def evaluate(self, dataloader):
         y_pred = self._predict_tags_batched(dataloader)
         y_true = np.append(np.zeros(12500), np.ones(12500))
+        # print(len(y_pred))
+        # print(len(y_true))
+        # print(y_pred)
 
         return classification_report(y_true, y_pred)
 
@@ -98,8 +101,8 @@ class BertEstimator:
                 if (step + 1) % GRADIENT_ACCUMULATION_STEPS == 0:
                     torch.nn.utils.clip_grad_norm_(model.parameters(), MAX_GRAD_NORM)
 
-                    scheduler.step()  # Update learning rate schedule
                     optimizer.step()
+                    scheduler.step()  # Update learning rate schedule
                     model.zero_grad()
                     global_step += 1
 

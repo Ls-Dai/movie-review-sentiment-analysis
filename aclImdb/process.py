@@ -4,13 +4,15 @@ import pandas as pd
 
 def main():
 
+    reviews = []
+
     # train
     # pos
     file_names = os.listdir("./train/pos")
     for i in range(len(file_names)):
         file_names[i] = "./train/pos/" + file_names[i]
 
-    reviews = []
+    # reviews = []
 
     for file_name in file_names:
         with open(file_name, 'r') as f:
@@ -23,7 +25,7 @@ def main():
     for i in range(len(file_names)):
         file_names[i] = "./train/neg/" + file_names[i]
 
-    reviews = []
+    # reviews = []
 
     for file_name in file_names:
         with open(file_name, 'r') as f:
@@ -34,13 +36,15 @@ def main():
     df = pd.DataFrame(reviews, columns=['review', 'sentiment'])
     df.to_csv('train.csv', index=False)
 
+    reviews = []
+
     # test
     # pos
     file_names = os.listdir("./test/pos")
     for i in range(len(file_names)):
         file_names[i] = "./test/pos/" + file_names[i]
 
-    reviews = []
+    # reviews = []
 
     for file_name in file_names:
         with open(file_name, 'r') as f:
@@ -53,7 +57,7 @@ def main():
     for i in range(len(file_names)):
         file_names[i] = "./test/neg/" + file_names[i]
 
-    reviews = []
+    # reviews = []
 
     for file_name in file_names:
         with open(file_name, 'r') as f:

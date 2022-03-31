@@ -31,7 +31,7 @@ def train(input_path, epochs=10, output_path="./weights/"):
     tokenizer.save_pretrained(output_path)
 
 
-def evaluate(input_path, model_path="weights/"):
+def evaluate(input_path, model_path="./weights/"):
     estimator = BertEstimator()
     estimator.load(model_dir=model_path)
 
@@ -59,7 +59,7 @@ def main():
             print("Not a valid data path.")
     elif args.evaluate:
         if os.path.exists(args.path):
-            evaluate()
+            evaluate(input_path=args.path)
         else:
             print("Not a valid data path.")
 

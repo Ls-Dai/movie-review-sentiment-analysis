@@ -1,1 +1,1 @@
-python run.py --train --path "./data/IMDB Dataset"
+python run.py --train --path ./data/train/train.csv
